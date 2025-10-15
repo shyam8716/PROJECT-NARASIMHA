@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 const Routing = () => {
   return (
     <div className="bg-blue-500">
@@ -34,5 +33,4 @@ const Routing = () => {
     </div>
   );
 };
-
 export default Routing;
