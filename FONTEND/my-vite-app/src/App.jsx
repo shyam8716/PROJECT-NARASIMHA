@@ -1,34 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
-function App() {
-  const [count, setCount] = useState(0)
-
+import React from 'react'
+import Routing from './Routing'
+import{Routes,Route} from 'react-router-dom'
+import AddJob from './JOB APPLICATION TRACKER/AddJob'
+import HomePage from './JOB APPLICATION TRACKER/HomePage'
+import ViewJob from './JOB APPLICATION TRACKER/ViewJob'
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <Routing/>
+    <Routes>
+      <Route path="/AddJob"element={<AddJob/>}></Route>
+      <Route path="/"element={<HomePage/>}></Route>
+      <Route path="ViewJob"element={<ViewJob/>}></Route>
+    </Routes>
+    
+    </div>
   )
 }
 
