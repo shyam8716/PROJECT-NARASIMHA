@@ -40,9 +40,11 @@ INSTALLED_APPS = [
     'JOB_APPLICATION_TRACKER',
     'jobs',
     'rest_framework', 
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -51,7 +53,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+CORS_ALLOW_ALL_ORIGINS = True 
 ROOT_URLCONF = 'JOB_APPLICATION_TRACKER.urls'
 
 TEMPLATES = [
@@ -78,7 +80,7 @@ WSGI_APPLICATION = 'JOB_APPLICATION_TRACKER.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'jobtracker',        
+        'NAME': 'Job_application_tracker_db',        
         'USER': 'root',             
         'PASSWORD': 'shyamuvandhu',  
         'HOST': 'localhost',
