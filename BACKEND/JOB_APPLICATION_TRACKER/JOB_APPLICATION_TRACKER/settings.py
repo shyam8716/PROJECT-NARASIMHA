@@ -54,6 +54,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 CORS_ALLOW_ALL_ORIGINS = True 
+"http://localhost:5173",
 ROOT_URLCONF = 'JOB_APPLICATION_TRACKER.urls'
 
 TEMPLATES = [
