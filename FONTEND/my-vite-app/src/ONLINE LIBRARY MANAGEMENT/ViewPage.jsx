@@ -1,17 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import api from "../api/axios"; // adjust path if needed
 
 const ViewPage = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const fetched = useRef(false); // ensures fetch happens only once
 
   useEffect(() => {
+    if (fetched.current) return; // skip if already fetched
+    fetched.current = true;
+
     const fetchBooks = async () => {
       try {
         const response = await api.get("/online_library_management/Reading_library_api/");
-        console.log("Fetched data:", response.data); // check what backend returns
-        setBooks(response.data); // assuming backend returns an array
+        console.log("Fetched data:", response.data); // will log only once
+        setBooks(response.data); // backend should return an array
       } catch (err) {
         console.error("Error fetching books:", err);
         setError(err.message);

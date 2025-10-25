@@ -9,12 +9,15 @@ const AddaPage = () => {
         "genre": "drama & comedy",
         "published_date": "2022-09-16"
     }
-    
     )
+    const[success,setsuccess]=useState("")
+    const[error,seterror]=useState("")
   return (
-    <div>
-      <h3>Adding library details</h3>
-    </div>
+    <div style={{ padding: "20px", fontFamily: "Arial" }}>
+      <h1>Add New Book</h1>
+      {success && <p style={{ color: "green" }}>{success}</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      </div>
   )
 }
 export default AddaPage
