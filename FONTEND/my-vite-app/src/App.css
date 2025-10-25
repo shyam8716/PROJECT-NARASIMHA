@@ -1,312 +1,109 @@
-.form {
-  max-width: 500px;
-  margin: 50px auto;
-  padding: 30px;
-  background: #f7f7f7;
-  border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-  font-family: Arial, sans-serif;
-}
-.form input,
-.form textarea,
-.form select {
-  width: 100%;
-  padding: 10px 15px;
-  margin: 8px 0;
-  border: 2px solid #ddd;
-  border-radius: 6px;
-  font-size: 16px;
-  transition: 0.3s;
-}
-.form input:focus,
-.form textarea:focus,
-.form select:focus {
-  border-color: #f44336;
-  outline: none;
-  box-shadow: 0 0 5px #f44336;
-}
-.form label {
-  font-weight: bold;
-  margin-top: 10px;
-  display: block;
-}
-.form button {
-  width: 100%;
-  padding: 12px;
-  margin-top: 15px;
-  background: linear-gradient(to right, #f44336, #ff1744, #ff5252);
-  color: white;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
-}
-.form button:hover {
-  background: linear-gradient(to right, #ff5252, #ff1744, #f44336);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-.error-msg {
-  color: red;
-  font-weight: bold;
-  margin-bottom: 15px;
-  text-align: center;
-}
-.delete-job-container {
-  max-width: 500px;
-  margin: 50px auto;
-  padding: 30px;
-  background: linear-gradient(145deg, #ffe6e6, #ffcccc);
-  border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-.delete-job-container h2 {
-  text-align: center;
-  font-size: 2rem;
-  color: #b30000;
-  margin-bottom: 20px;
-  text-shadow: 1px 1px 2px #fff;
-}
-.delete-job-container p {
-  text-align: center;
-  font-weight: bold;
-  color: #800000;
-  margin-bottom: 20px;
-}
-
-/* Label and input */
-.delete-job-container label {
-  display: block;
-  margin-bottom: 10px;
-  font-weight: 600;
-  color: #660000;
-}
-
-.delete-job-container input[type="number"] {
-  width: 100%;
-  padding: 12px 15px;
-  border-radius: 10px;
-  border: 2px solid #cc0000;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  outline: none;
-}
-
-.delete-job-container input[type="number"]:focus {
-  border-color: #ff0000;
-  box-shadow: 0 0 8px rgba(255, 0, 0, 0.4);
-}
-.delete-job-container button {
-  width: 100%;
-  margin-top: 20px;
-  padding: 15px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: white;
-  background: linear-gradient(135deg, #ff1a1a, #e60000, #b30000);
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-}
-.delete-job-container button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-}
-@media (max-width: 600px) {
-  .delete-job-container {
-    padding: 20px;
-    margin: 20px;
-  }
-  .delete-job-container h2 {
-    font-size: 1.6rem;
-  }
-}
+/* Main container */
 .home-container {
   max-width: 900px;
   margin: 50px auto;
-  padding: 40px;
-  background: linear-gradient(145deg, #f3f4f6, #e5e7eb);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  border-radius: 20px;
+  padding: 50px 40px;
+  background: linear-gradient(145deg, #f0f4f8, #d9e2ec);
+  border-radius: 25px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
   text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+/* Heading & paragraph */
 .home-container h1 {
   font-size: 3rem;
-  font-weight: 700;
-  color: #4b0082;
+  font-weight: 800;
+  color: #3b0a45;
   margin-bottom: 15px;
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
 }
+
 .home-container p {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: #333;
   margin-bottom: 40px;
+  letter-spacing: 0.5px;
 }
+
+/* Button base style */
 .home-container .btn {
   display: inline-block;
   margin: 10px;
-  padding: 12px 25px;
+  padding: 15px 35px;
   font-size: 1rem;
-  font-weight: 600;
-  border-radius: 12px;
+  font-weight: 700;
+  border-radius: 15px;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.35s ease-in-out;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
   text-decoration: none;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-.btn-view {
-  background: linear-gradient(to right, #7f00ff, #e100ff);
   color: white;
 }
+
+/* Gradient & hover effects */
+.btn-view {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+}
 .btn-view:hover {
-  background: linear-gradient(to right, #e100ff, #7f00ff);
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  background: linear-gradient(135deg, #2a5298, #1e3c72);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
 }
 
 .btn-add {
-  background: linear-gradient(to right, #00f260, #0575e6);
+  background: linear-gradient(135deg, #00f260, #0575e6);
   color: white;
 }
 .btn-add:hover {
-  background: linear-gradient(to right, #0575e6, #00f260);
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  background: linear-gradient(135deg, #0575e6, #00f260);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
 }
 
 .btn-update {
-  background: linear-gradient(to right, #ffb347, #ffcc33);
-  color: #333;
+  background: linear-gradient(135deg, #06b6d4, #3b82f6, #6366f1);
 }
 .btn-update:hover {
-  background: linear-gradient(to right, #ffcc33, #ffb347);
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  background: linear-gradient(135deg, #6366f1, #3b82f6, #06b6d4);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
 }
 
 .btn-delete {
-  background: linear-gradient(to right, #ff4e50, #f9d423);
-  color: white;
+  background: linear-gradient(135deg, #7f00ff, #e100ff);
 }
 .btn-delete:hover {
-  background: linear-gradient(to right, #f9d423, #ff4e50);
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  background: linear-gradient(135deg, #e100ff, #7f00ff);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
 }
+
+/* Link inside buttons */
 .home-container .btn a {
   color: inherit;
   text-decoration: none;
   display: block;
 }
 
-/* Container styling */
-.update-delete-container {
-  max-width: 700px;
-  margin: 50px auto;
-  padding: 30px;
-  background: linear-gradient(145deg, #f7f8fa, #e2e6ea);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Heading */
-.update-delete-container h2 {
-  text-align: center;
-  color: #333;
-  font-size: 2rem;
-  margin-bottom: 20px;
-  text-shadow: 1px 1px 2px #ccc;
-}
-
-/* Message text */
-.update-delete-container p.message {
-  text-align: center;
-  font-weight: bold;
-  margin-bottom: 15px;
-  color: #e74c3c; /* error color */
-}
-
-.update-delete-container p.message.success {
-  color: #27ae60; /* success color */
-}
-
-/* Form styling */
-.update-delete-container form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-/* Label styling */
-.update-delete-container label {
-  font-weight: 600;
-  color: #555;
-  margin-bottom: 5px;
-  display: block;
-}
-
-/* Inputs and textarea */
-.update-delete-container input[type="text"],
-.update-delete-container input[type="email"],
-.update-delete-container input[type="date"],
-.update-delete-container input[type="number"],
-.update-delete-container textarea,
-.update-delete-container select {
-  width: 100%;
-  padding: 10px 15px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  outline: none;
-}
-
-/* Focus effect */
-.update-delete-container input:focus,
-.update-delete-container textarea:focus,
-.update-delete-container select:focus {
-  border-color: #0077ff;
-  box-shadow: 0 0 10px rgba(0, 119, 255, 0.3);
-}
-
-/* Textarea extra */
-.update-delete-container textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-
-/* Submit/Delete buttons */
-.update-delete-container button {
-  padding: 12px 20px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: white;
-  background: linear-gradient(90deg, #ff6a00, #ee0979);
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-}
-
-/* Hover effect */
-.update-delete-container button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(90deg, #ee0979, #ff6a00);
-}
-
 /* Responsive */
 @media (max-width: 768px) {
-  .update-delete-container {
+  .home-container {
     margin: 20px;
-    padding: 20px;
+    padding: 30px;
+  }
+
+  .home-container h1 {
+    font-size: 2rem;
+  }
+
+  .home-container p {
+    font-size: 1rem;
+  }
+
+  .home-container .btn {
+    padding: 12px 25px;
+    font-size: 0.95rem;
   }
 }
