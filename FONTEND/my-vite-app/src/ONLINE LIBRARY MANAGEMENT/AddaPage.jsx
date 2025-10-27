@@ -4,7 +4,7 @@ const AddaPage = () => {
     const[formdata,setformdata]=useState(
          {
         "id": 1,
-        "title": "my girl friend isan alien",
+        "title": "my girl friend is an alien",
         "author": "fang ling and chai jayoke",
         "genre": "drama & comedy",
         "published_date": "2022-09-16"
