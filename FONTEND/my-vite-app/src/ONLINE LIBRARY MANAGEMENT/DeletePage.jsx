@@ -40,14 +40,12 @@ const DeletePage = () => {
       );
     }
   };
-
   return (
     <div className="container">
       <section className="form-section">
         <h1 className="title" style={{ color: discoColor }}>
           🗑️ Delete Book
         </h1>
-
         {message && (
           <p
             className="message blinking-message"
@@ -74,7 +72,6 @@ const DeletePage = () => {
           Delete Book
         </button>
       </section>
-
       <style>{`
         @keyframes blink {
           0%, 100% { border-color: #8B0000; color: #8B0000; }
@@ -83,7 +80,6 @@ const DeletePage = () => {
           60% { border-color: #B22222; color: #B22222; }
           80% { border-color: #800000; color: #800000; }
         }
-
         @keyframes blink-message {
           0%, 100% { color: #FFDAB9; }
           20% { color: #2F4F4F; }
@@ -91,15 +87,12 @@ const DeletePage = () => {
           60% { color: #FFFFE0; }
           80% { color: #FFA07A; }
         }
-
         .blinking {
           animation: blink 1s infinite;
         }
-
         .blinking-message {
           animation: blink-message 1s infinite;
         }
-
         .container {
           display: flex;
           justify-content: center;
@@ -108,7 +101,6 @@ const DeletePage = () => {
           background: #1c1c1c;
           padding: 20px;
         }
-
         .form-section {
           background: #2a2a2a;
           padding: 40px;
@@ -120,13 +112,11 @@ const DeletePage = () => {
           flex-direction: column;
           align-items: center;
         }
-
         .title {
           font-size: 2rem;
           margin-bottom: 30px;
           text-align: center;
         }
-
         .input-dark {
           width: 100%;
           padding: 15px;
@@ -136,7 +126,6 @@ const DeletePage = () => {
           font-size: 1.1rem;
           border: 2px solid;
         }
-
         .btn {
           width: 100%;
           padding: 15px;
@@ -146,7 +135,6 @@ const DeletePage = () => {
           cursor: pointer;
           border: none;
         }
-
         .message {
           margin-bottom: 15px;
           text-align: center;
@@ -156,5 +144,4 @@ const DeletePage = () => {
     </div>
   );
 };
-
 export default DeletePage;
