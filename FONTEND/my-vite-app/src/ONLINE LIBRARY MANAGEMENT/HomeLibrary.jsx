@@ -8,12 +8,11 @@ const HomeLibrary = () => {
         Welcome to the Online Library Management
       </h1>
       <p className="text-lg mb-8 text-gray-300 text-center">Select an option below:</p>
-
-      <Link to="/ViewPage" className="disco-link blue">
-        View Library Details
-      </Link>
       <Link to="/AddPage" className="disco-link green">
         Add New Library Details
+      </Link>
+      <Link to="/ViewPage" className="disco-link blue">
+        View Library Details
       </Link>
       <Link to="/UpdatePage" className="disco-link yellow">
         Update Existing Library Details

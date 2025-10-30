@@ -30,11 +30,11 @@ const LibraryRouting = () => {
           <Link to="/AddPage" className="disco-link disco-add">
             Add library page
           </Link>
-          <Link to="/UpdatePage" className="disco-link disco-update">
-            Update library page
-          </Link>
           <Link to="/ViewPage" className="disco-link disco-view">
             View existing library page
+          </Link>
+          <Link to="/UpdatePage" className="disco-link disco-update">
+            Update library page
           </Link>
           <Link to="/DeletePage" className="disco-link disco-delete">
             Delete library details

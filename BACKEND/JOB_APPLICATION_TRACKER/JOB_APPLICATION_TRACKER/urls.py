@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('jobs/', include('jobs.urls')),
     path('online_library_management/',include('online_library_management.urls')),
-    
+    path('calculators/',include('calculators.urls'))
+
 ]

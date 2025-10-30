@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework', 
     'corsheaders',
     'online_library_management',
+    'calculators',
 ]
 
 MIDDLEWARE = [
