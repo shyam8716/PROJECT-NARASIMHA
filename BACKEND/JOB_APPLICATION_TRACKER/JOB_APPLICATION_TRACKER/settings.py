@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'rest_framework', 
     'corsheaders',
     'online_library_management',
-    'event_management_system' ,
 ]
 
 MIDDLEWARE = [
