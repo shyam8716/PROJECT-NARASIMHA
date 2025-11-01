@@ -13,22 +13,24 @@ import UpdatePage from './ONLINE LIBRARY MANAGEMENT/UpdatePage';
 import DeletePage from './ONLINE LIBRARY MANAGEMENT/DeletePage';
 import HomeLibrary from './ONLINE LIBRARY MANAGEMENT/HomeLibrary';
 import LibraryRouting from './LibraryRouting';
+import CalculatorPage from './CALCULATOR/CalculatorPage';
 const App = () => {
   return (
     <div>
       {/* <Routing/> */}
-      <LibraryRouting/>
+      {/* <LibraryRouting/> */}
+      <CalculatorPage/>
         <Routes>
         {/* <Route path="/AddJob" element={<AddJob />} />
         <Route path="/HomePage" element={<HomePage />} />
         <Route path="/ViewJob" element={<ViewJob />} />
         <Route path="/UpdateJob" element={<UpdateJob />} />
         <Route path="/DeleteJob"element={<DeleteJob/>}/>  */}
-        <Route path="/AddPage"element={<AddaPage/>}/>
+        {/* <Route path="/AddPage"element={<AddaPage/>}/>
         <Route path="/Viewpage"element={<ViewPage/>}/>
         <Route path="/UpdatePage"element={<UpdatePage/>}/>
         <Route path="/Deletepage"element={<DeletePage/>}/>
-        <Route path="/HomeLibrary"element={<HomeLibrary/>}/>
+        <Route path="/HomeLibrary"element={<HomeLibrary/>}/> */}
       </Routes> 
     </div> 
   );
