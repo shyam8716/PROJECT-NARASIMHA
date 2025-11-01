@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import api from "../api/axios";
-
 const API_BASE = "http://127.0.0.1:8000/calculators/";
-
-// Neon ambient styles
 const ambient = {
   darkBg: "linear-gradient(180deg, #050814, #0B0E26)",
   lightBg: "linear-gradient(180deg, #f0f6ff, #dce7ff)",
@@ -14,14 +11,10 @@ const ambient = {
   neonText: "#00f6ff",
   lightText: "#002244",
 };
-
-// Numbers and operations
 const numbers = ["7","8","9","4","5","6","1","2","3","0",".","⌫"];
 const ops = ["+","-","*","/","//","%"];
 const mapOp = { "+":"ADD","-":"SUB","*":"MUL","/":"DIV","//":"FLOOR","%":"MOD" };
 const revOp = { ADD:"+", SUB:"-", MUL:"*", DIV:"/", FLOOR:"//", MOD:"%" };
-
-// Unique neon colors for number buttons
 const numberColors = {
   "0": { light: "#00ffff", dark: "#00cccc", glowLight: "0 0 10px #00ffff", glowDark: "0 0 15px #00cccc" },
   "1": { light: "#ff00ff", dark: "#cc00cc", glowLight: "0 0 10px #ff00ff", glowDark: "0 0 15px #cc00cc" },
@@ -33,26 +26,21 @@ const numberColors = {
   "7": { light: "#ffcc00", dark: "#cc9900", glowLight: "0 0 10px #ffcc00", glowDark: "0 0 15px #cc9900" },
   "8": { light: "#66ffcc", dark: "#33cc99", glowLight: "0 0 10px #66ffcc", glowDark: "0 0 15px #33cc99" },
   "9": { light: "#cc00ff", dark: "#9900cc", glowLight: "0 0 10px #cc00ff", glowDark: "0 0 15px #9900cc" },
-  ".": { light: "#ffffff", dark: "#bbbbbb", glowLight: "0 0 10px #ffffff", glowDark: "0 0 15px #bbbbbb" },
+  ".": { light: "#00ffff", dark: "#00cccc", glowLight: "0 0 10px #00ffff", glowDark: "0 0 15px #00cccc" },
   "⌫": { light: "#ff3333", dark: "#cc0000", glowLight: "0 0 10px #ff3333", glowDark: "0 0 15px #cc0000" }
 };
-
-// Unique neon colors for operations
 const opColors = {
   "+": { light: "#00ffff", dark: "#00cccc", glowLight: "0 0 10px #00ffff", glowDark: "0 0 15px #00cccc" },
-  "-": { light: "#ff9900", dark: "#cc7a00", glowLight: "0 0 12px #ff9900", glowDark: "0 0 18px #cc7a00" }, // Orange glow
+  "-": { light: "#ff9900", dark: "#cc7a00", glowLight: "0 0 12px #ff9900", glowDark: "0 0 18px #cc7a00" },
   "*": { light: "#ffff00", dark: "#cccc00", glowLight: "0 0 10px #ffff00", glowDark: "0 0 15px #cccc00" },
   "/": { light: "#00ff00", dark: "#00cc00", glowLight: "0 0 10px #00ff00", glowDark: "0 0 15px #00cc00" },
   "//": { light: "#ff6600", dark: "#cc5200", glowLight: "0 0 10px #ff6600", glowDark: "0 0 15px #cc5200" },
   "%": { light: "#ff0066", dark: "#cc0052", glowLight: "0 0 10px #ff0066", glowDark: "0 0 15px #cc0052" }
 };
-
-// Special neon colors for = and AC
 const specialColors = {
   "=": { light: "#00ff00", dark: "#00cc00", glowLight: "0 0 12px #00ff00, 0 0 20px #00cc00", glowDark: "0 0 15px #00cc00, 0 0 25px #009900" },
   "AC": { light: "#ff0000", dark: "#cc0000", glowLight: "0 0 12px #ff3333, 0 0 20px #cc0000", glowDark: "0 0 15px #cc0000, 0 0 25px #990000" }
 };
-
 const RealisticCalculator = () => {
   const [num1, setNum1] = useState("0");
   const [num2, setNum2] = useState("");
@@ -64,11 +52,9 @@ const RealisticCalculator = () => {
   const [showCalc, setShowCalc] = useState(false);
   const [showHis, setShowHis] = useState(false);
   const [loading, setLoading] = useState(false);
-
   const [editModal, setEditModal] = useState(false);
   const [successMsg, setSuccessMsg] = useState("");
   const [editData, setEditData] = useState({ id:null, number1:"", number2:"", operation:"+" });
-
   const loadHistory = async () => {
     setLoading(true);
     try {
@@ -77,9 +63,7 @@ const RealisticCalculator = () => {
     } catch(e) { console.log(e); }
     setLoading(false);
   };
-
   useEffect(()=>{ loadHistory(); }, []);
-
   const saveCalculation = async (n1,n2,o,result)=>{
     try{
       await api.post(`${API_BASE}Creating_calculator_data/`, {
@@ -91,14 +75,12 @@ const RealisticCalculator = () => {
       loadHistory();
     }catch(e){console.log(e);}
   };
-
   const deleteOne = async (id)=>{ 
     try{
       await api.delete(`${API_BASE}Deleteing_calculator_data/${id}/`); 
       setHistory(h=>h.filter(x=>x.id!==id)); 
     }catch(e){console.log(e);}
   };
-
   const calculate = (a,b,o)=>{ 
     a=parseFloat(a)||0; b=parseFloat(b)||0; 
     if(o==="+")return a+b; 
@@ -108,13 +90,11 @@ const RealisticCalculator = () => {
     if(o==="%")return b!==0?a%b:"Error"; 
     if(o==="//")return b!==0?Math.floor(a/b):"Error"; 
   };
-
   const pressNumber=n=>{
     if(n==="⌫"){ active==="num1"?setNum1(p=>p.slice(0,-1)||"0"):setNum2(p=>p.slice(0,-1)||"0"); return; } 
     if(n==="."&&(active==="num1"?num1:num2).includes(".")) return; 
     active==="num1"?setNum1(p=>p==="0"?n:p+n):setNum2(p=>p==="0"?n:p+n); 
   };
-
   const calcResult=async()=>{
     if(!op)return; 
     const result=calculate(num1,num2,op); 
@@ -125,7 +105,6 @@ const RealisticCalculator = () => {
     setActive("num1"); 
     if(result!=="Error") saveCalculation(num1,num2,op,result); 
   };
-
   const updateOne=async()=>{
     const {id,number1,number2,operation}=editData; 
     if(number1===""||number2===""){setSuccessMsg("❌ Both numbers are required");return;} 
@@ -143,73 +122,39 @@ const RealisticCalculator = () => {
       loadHistory(); 
     }catch(e){console.log(e); setSuccessMsg("❌ Update Failed");} 
   };
-
   const getButtonStyle = (btn) => {
-    if(numbers.includes(btn)){
-      const c = numberColors[btn];
-      return {
-        padding: "14px",
-        borderRadius: "10px",
-        cursor: "pointer",
-        background: darkTheme ? c.dark : c.light,
-        color: "#fff",
-        boxShadow: darkTheme ? c.glowDark : c.glowLight,
-        fontSize: "1.2rem",
-        border: "none",
-        transition: "0.2s",
-      };
-    }
-    if(ops.includes(btn)){
-      const c = opColors[btn];
-      return {
-        padding: "14px",
-        borderRadius: "10px",
-        cursor: "pointer",
-        background: darkTheme ? c.dark : c.light,
-        color: "#fff",
-        boxShadow: darkTheme ? c.glowDark : c.glowLight,
-        fontSize: "1.2rem",
-        border: "none",
-        transition: "0.2s",
-      };
-    }
-    if(specialColors[btn]){
-      const c = specialColors[btn];
-      return {
-        padding: "14px",
-        borderRadius: "10px",
-        cursor: "pointer",
-        background: darkTheme ? c.dark : c.light,
-        color: "#fff",
-        boxShadow: darkTheme ? c.glowDark : c.glowLight,
-        fontSize: "1.2rem",
-        border: "none",
-        transition: "0.2s",
-        fontWeight: "bold"
-      };
-    }
+    let c;
+    if(numbers.includes(btn)) c = numberColors[btn];
+    else if(ops.includes(btn)) c = opColors[btn];
+    else if(specialColors[btn]) c = specialColors[btn];
+    else c = { light: ambient.lightBtn, dark: ambient.darkBtn, glowLight: ambient.lightGlow, glowDark: ambient.darkGlow };
     return {
-      padding: "10px",
-      borderRadius: "8px",
+      padding: "14px",
+      borderRadius: "10px",
       cursor: "pointer",
-      background: darkTheme ? ambient.darkBtn : ambient.lightBtn,
-      color: ambient.lightText,
-      boxShadow: darkTheme ? ambient.darkGlow : ambient.lightGlow,
-      fontSize: "1rem",
+      background: darkTheme ? c.dark : c.light,
+      color: "#fff",
+      fontSize: "1.2rem",
       border: "none",
+      fontWeight: "bold",
+      boxShadow: darkTheme ? c.glowDark : c.glowLight,
+      textShadow: darkTheme ? c.glowDark : c.glowLight,
+      animation: "glow 1.5s infinite alternate",
       transition: "0.2s"
     };
   };
-
   return (
-    <div style={{minHeight:"100vh",display:"flex",flexDirection:"column",alignItems:"center",padding:"18px",background:darkTheme?ambient.darkBg:ambient.lightBg,color:darkTheme?ambient.neon:ambient.lightText}}>
-      <style>{`button:hover{transform:scale(1.08); box-shadow: 0 0 15px #fff, 0 0 25px #0ff;}`}</style>
-
-      <button onClick={()=>setDarkTheme(!darkTheme)} style={{...getButtonStyle("AC"), color: darkTheme?"#00ffff":"#ff00ff", fontWeight:"bold"}}>
+    <div style={{minHeight:"100vh",display:"flex",flexDirection:"column",alignItems:"center",padding:"18px",background:darkTheme?ambient.darkBg:ambient.lightBg,color:darkTheme?ambient.neonText:ambient.lightText}}>
+      <style>{`
+        @keyframes glow {
+          0% { filter: brightness(1); }
+          50% { filter: brightness(1.8); }
+          100% { filter: brightness(1); }
+        }
+      `}</style>
+      <button onClick={()=>setDarkTheme(!darkTheme)} style={{...getButtonStyle("AC"), color: darkTheme?"#00ffff":"#ff00ff"}}>
         {darkTheme?"☀ Light":"🌙 Dark"}
       </button>
-
-      {/* Open/Close/History buttons */}
       <div style={{display:"flex",gap:8,margin:12}}>
         {["🧮 Open","❌ Close","📜 History"].map(btn => (
           <button 
@@ -228,6 +173,7 @@ const RealisticCalculator = () => {
               fontWeight: "bold",
               fontSize: "1rem",
               boxShadow: darkTheme ? "0 0 12px #00ffff, 0 0 20px #00cccc" : "0 0 10px #3333ff, 0 0 15px #0000aa",
+              animation: "glow 1.5s infinite alternate",
               border: "none",
               transition: "0.2s"
             }}
@@ -236,11 +182,9 @@ const RealisticCalculator = () => {
           </button>
         ))}
       </div>
-
-      {/* Calculator UI */}
       {showCalc && (
         <div style={{width:320,padding:18,borderRadius:18,background:darkTheme?"#051021":"#f8fbff",boxShadow:darkTheme?ambient.darkGlow:ambient.lightGlow}}>
-          <div style={{background:darkTheme?"#000":"#e8f1ff",color:darkTheme?ambient.neon:ambient.lightText,padding:12,minHeight:60,fontSize:"1.7rem",borderRadius:10,marginBottom:10,textAlign:"right",textShadow:"0 0 8px #00f6ff, 0 0 12px #00bfff"}}>
+          <div style={{background:darkTheme?"#000":"#e8f1ff",color:darkTheme?ambient.neonText:ambient.lightText,padding:12,minHeight:60,fontSize:"1.7rem",borderRadius:10,marginBottom:10,textAlign:"right",textShadow:"0 0 8px #00f6ff, 0 0 12px #00bfff"}}>
             {last || `${num1}${op||""}${num2}`}
           </div>
           <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:10}}>
@@ -251,21 +195,14 @@ const RealisticCalculator = () => {
           </div>
         </div>
       )}
-
-      {/* History & Edit Modal */}
       {showHis && (
         <div style={{marginTop:15,width:330,padding:12,background:darkTheme?"#0A1022":"#e8f1ff",borderRadius:12,boxShadow:darkTheme?ambient.darkGlow:ambient.lightGlow}}>
           <h3 style={{textShadow:darkTheme?"0 0 8px #00f6ff, 0 0 12px #00bfff":"0 0 4px #0099ff"}}>History</h3>
           {loading && <p>Loading...</p>}
           {history.map(r=>(
             <div key={r.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",margin:"6px 0"}}>
-              <span style={{
-                cursor:"pointer",
-                textShadow: darkTheme?"0 0 6px #ffffff":"0 0 6px #000",
-                color: darkTheme?"#ffffff":"#000",
-                transition:"0.2s"
-              }}
-              onClick={()=>{setNum1(r.number1);setNum2(r.number2);setOp(revOp[r.operation]);setLast(`${r.number1} ${revOp[r.operation]} ${r.number2} = ${r.result}`);setShowCalc(true);}}>
+              <span style={{ cursor:"pointer", textShadow: darkTheme?"0 0 6px #ffffff":"0 0 6px #000", color: darkTheme?"#ffffff":"#000", transition:"0.2s" }}
+                onClick={()=>{setNum1(r.number1);setNum2(r.number2);setOp(revOp[r.operation]);setLast(`${r.number1} ${revOp[r.operation]} ${r.number2} = ${r.result}`);setShowCalc(true);}}>
                 {r.number1} {revOp[r.operation]} {r.number2} = {r.result}
               </span>
               <div style={{display:"flex",gap:5}}>
@@ -276,13 +213,12 @@ const RealisticCalculator = () => {
           ))}
         </div>
       )}
-
       {editModal && (
         <div style={{position:"fixed",top:0,left:0,width:"100%",height:"100%",background:"rgba(0,0,0,0.5)",display:"flex",justifyContent:"center",alignItems:"center",backdropFilter:"blur(4px)"}}>
           <div style={{background:"#000",padding:20,borderRadius:10,width:280,color:"#ff9900",boxShadow:"0 0 15px #ff9900, 0 0 25px #cc7a00"}}>
             <h3 style={{textShadow:"0 0 6px #ff9900,0 0 12px #cc7a00"}}>Edit Record</h3>
             <input value={editData.number1} onChange={e=>setEditData({...editData,number1:e.target.value})} placeholder="Number 1" style={{width:"100%",marginBottom:5,padding:6,borderRadius:6,background:"#111",color:"#ff9900",border:"1px solid #ff9900"}}/>
-            <input value={editData.number2} onChange={e=>setEditData({...editData,number2:e.target.value})} placeholder="Number 2" style={{width:"100%",marginBottom:5,padding:6,borderRadius:6,bgcolor:"#111",color:"#ff9900",border:"1px solid #ff9900"}}/>
+            <input value={editData.number2} onChange={e=>setEditData({...editData,number2:e.target.value})} placeholder="Number 2" style={{width:"100%",marginBottom:5,padding:6,borderRadius:6,background:"#111",color:"#ff9900",border:"1px solid #ff9900"}}/>
             <select value={editData.operation} onChange={e=>setEditData({...editData,operation:e.target.value})} style={{width:"100%",marginBottom:5,padding:6,borderRadius:6,background:"#111",color:"#ff9900",border:"1px solid #ff9900"}}>
               {ops.map(o=><option key={o} value={o}>{o}</option>)}
             </select>
@@ -298,5 +234,4 @@ const RealisticCalculator = () => {
     </div>
   );
 };
-
 export default RealisticCalculator;
