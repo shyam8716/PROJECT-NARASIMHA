@@ -19,6 +19,7 @@
     "react-datepicker": "^8.8.0",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.4",
+    "react-speech-kit": "^3.0.1",
     "three": "^0.180.0"
   },
   "devDependencies": {

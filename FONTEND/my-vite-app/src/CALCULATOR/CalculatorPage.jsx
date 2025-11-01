@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"; 
 import api from "../api/axios";
+
 const API_BASE = "http://127.0.0.1:8000/calculators/";
+
 const ambient = {
   darkBg: "linear-gradient(180deg, #050814, #0B0E26)",
   lightBg: "linear-gradient(180deg, #f0f6ff, #dce7ff)",
@@ -11,10 +13,12 @@ const ambient = {
   neonText: "#00f6ff",
   lightText: "#002244",
 };
+
 const numbers = ["7","8","9","4","5","6","1","2","3","0",".","⌫"];
 const ops = ["+","-","*","/","//","%"];
 const mapOp = { "+":"ADD","-":"SUB","*":"MUL","/":"DIV","//":"FLOOR","%":"MOD" };
 const revOp = { ADD:"+", SUB:"-", MUL:"*", DIV:"/", FLOOR:"//", MOD:"%" };
+
 const numberColors = {
   "0": { light: "#00ffff", dark: "#00cccc", glowLight: "0 0 10px #00ffff", glowDark: "0 0 15px #00cccc" },
   "1": { light: "#ff00ff", dark: "#cc00cc", glowLight: "0 0 10px #ff00ff", glowDark: "0 0 15px #cc00cc" },
@@ -29,6 +33,7 @@ const numberColors = {
   ".": { light: "#00ffff", dark: "#00cccc", glowLight: "0 0 10px #00ffff", glowDark: "0 0 15px #00cccc" },
   "⌫": { light: "#ff3333", dark: "#cc0000", glowLight: "0 0 10px #ff3333", glowDark: "0 0 15px #cc0000" }
 };
+
 const opColors = {
   "+": { light: "#00ffff", dark: "#00cccc", glowLight: "0 0 10px #00ffff", glowDark: "0 0 15px #00cccc" },
   "-": { light: "#ff9900", dark: "#cc7a00", glowLight: "0 0 12px #ff9900", glowDark: "0 0 18px #cc7a00" },
@@ -37,10 +42,12 @@ const opColors = {
   "//": { light: "#ff6600", dark: "#cc5200", glowLight: "0 0 10px #ff6600", glowDark: "0 0 15px #cc5200" },
   "%": { light: "#ff0066", dark: "#cc0052", glowLight: "0 0 10px #ff0066", glowDark: "0 0 15px #cc0052" }
 };
+
 const specialColors = {
   "=": { light: "#00ff00", dark: "#00cc00", glowLight: "0 0 12px #00ff00, 0 0 20px #00cc00", glowDark: "0 0 15px #00cc00, 0 0 25px #009900" },
   "AC": { light: "#ff0000", dark: "#cc0000", glowLight: "0 0 12px #ff3333, 0 0 20px #cc0000", glowDark: "0 0 15px #cc0000, 0 0 25px #990000" }
 };
+
 const RealisticCalculator = () => {
   const [num1, setNum1] = useState("0");
   const [num2, setNum2] = useState("");
@@ -143,6 +150,35 @@ const RealisticCalculator = () => {
       transition: "0.2s"
     };
   };
+  const updateButtonStyle = {
+    padding: "14px",
+    borderRadius: "10px",
+    cursor: "pointer",
+    background: darkTheme ? "#009900" : "#00ff00",
+    color: "#fff",
+    fontSize: "1.2rem",
+    border: "none",
+    fontWeight: "bold",
+    boxShadow: darkTheme ? "0 0 15px #00cc00, 0 0 25px #009900" : "0 0 12px #00ff00, 0 0 20px #00cc00",
+    textShadow: darkTheme ? "0 0 15px #00cc00, 0 0 25px #009900" : "0 0 12px #00ff00, 0 0 20px #00cc00",
+    animation: "glow 1.5s infinite alternate",
+    transition: "0.2s"
+  };
+  const deleteButtonStyle = {
+    padding: "14px",
+    borderRadius: "10px",
+    cursor: "pointer",
+    background: darkTheme ? "#cc0000" : "#ff0000",
+    color: "#fff",
+    fontSize: "1.2rem",
+    border: "none",
+    fontWeight: "bold",
+    boxShadow: darkTheme ? "0 0 15px #cc0000, 0 0 25px #990000" : "0 0 12px #ff3333, 0 0 20px #cc0000",
+    textShadow: darkTheme ? "0 0 15px #cc0000, 0 0 25px #990000" : "0 0 12px #ff3333, 0 0 20px #cc0000",
+    animation: "glow 1.5s infinite alternate",
+    transition: "0.2s"
+  };
+
   return (
     <div style={{minHeight:"100vh",display:"flex",flexDirection:"column",alignItems:"center",padding:"18px",background:darkTheme?ambient.darkBg:ambient.lightBg,color:darkTheme?ambient.neonText:ambient.lightText}}>
       <style>{`
@@ -156,28 +192,13 @@ const RealisticCalculator = () => {
         {darkTheme?"☀ Light":"🌙 Dark"}
       </button>
       <div style={{display:"flex",gap:8,margin:12}}>
-        {["🧮 Open","❌ Close","📜 History"].map(btn => (
-          <button 
-            key={btn} 
-            onClick={()=>{
-              if(btn==="🧮 Open") setShowCalc(true);
-              if(btn==="❌ Close") setShowCalc(false);
-              if(btn==="📜 History") setShowHis(h => !h);
-            }}
-            style={{
-              padding: "12px 16px",
-              borderRadius: 10,
-              cursor: "pointer",
-              background: darkTheme ? "#00ffff" : "#3333ff",
-              color: darkTheme ? "#000" : "#fff",
-              fontWeight: "bold",
-              fontSize: "1rem",
-              boxShadow: darkTheme ? "0 0 12px #00ffff, 0 0 20px #00cccc" : "0 0 10px #3333ff, 0 0 15px #0000aa",
-              animation: "glow 1.5s infinite alternate",
-              border: "none",
-              transition: "0.2s"
-            }}
-          >
+        {["Calculator Open","Calculator Close","📜 History"].map(btn => (
+          <button key={btn} onClick={()=>{
+            if(btn==="Calculator Open") setShowCalc(true); 
+            if(btn==="Calculator Close") setShowCalc(false); 
+            if(btn==="📜 History") setShowHis(h => !h);
+          }}
+            style={{padding: "12px 16px", borderRadius: 10, cursor: "pointer", background: darkTheme ? "#00ffff" : "#3333ff", color: darkTheme ? "#000" : "#fff", fontWeight: "bold", fontSize: "1rem", boxShadow: darkTheme ? "0 0 12px #00ffff, 0 0 20px #00cccc" : "0 0 10px #3333ff, 0 0 15px #0000aa", animation: "glow 1.5s infinite alternate", border: "none", transition: "0.2s"}}>
             {btn}
           </button>
         ))}
@@ -196,21 +217,53 @@ const RealisticCalculator = () => {
         </div>
       )}
       {showHis && (
-        <div style={{marginTop:15,width:330,padding:12,background:darkTheme?"#0A1022":"#e8f1ff",borderRadius:12,boxShadow:darkTheme?ambient.darkGlow:ambient.lightGlow}}>
-          <h3 style={{textShadow:darkTheme?"0 0 8px #00f6ff, 0 0 12px #00bfff":"0 0 4px #0099ff"}}>History</h3>
+        <div style={{marginTop:15,width:"95%",maxWidth:600,padding:12,background:darkTheme?"#0A1022":"#e8f1ff",borderRadius:12,boxShadow:darkTheme?ambient.darkGlow:ambient.lightGlow,overflowX:"auto"}}>
+          <div style={{display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12}}>
+            <h3 style={{textShadow:darkTheme?"0 0 8px #00f6ff, 0 0 12px #00bfff":"0 0 4px #0099ff", margin:0}}>Calculation History</h3>
+            <button 
+              onClick={()=>setShowHis(false)} 
+              style={{padding:"6px 12px", borderRadius:6, cursor:"pointer", background:darkTheme?"#ff3300":"#ff0000", color:"#fff", fontWeight:"bold"}}
+            >
+              ❌ Close
+            </button>
+          </div>
           {loading && <p>Loading...</p>}
-          {history.map(r=>(
-            <div key={r.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",margin:"6px 0"}}>
-              <span style={{ cursor:"pointer", textShadow: darkTheme?"0 0 6px #ffffff":"0 0 6px #000", color: darkTheme?"#ffffff":"#000", transition:"0.2s" }}
-                onClick={()=>{setNum1(r.number1);setNum2(r.number2);setOp(revOp[r.operation]);setLast(`${r.number1} ${revOp[r.operation]} ${r.number2} = ${r.result}`);setShowCalc(true);}}>
-                {r.number1} {revOp[r.operation]} {r.number2} = {r.result}
-              </span>
-              <div style={{display:"flex",gap:5}}>
-                <button style={getButtonStyle("AC")} onClick={()=>{setEditData({id:r.id,number1:r.number1,number2:r.number2,operation:revOp[r.operation]});setEditModal(true);}}>✏️</button>
-                <button style={getButtonStyle("AC")} onClick={()=>deleteOne(r.id)}>❌</button>
-              </div>
-            </div>
-          ))}
+          {!loading && history.length === 0 && <p>No history found.</p>}
+          {!loading && history.length > 0 && (
+            <table style={{width:"100%",borderCollapse:"collapse",color:darkTheme?"#ffffff":"#000"}}>
+              <thead>
+                <tr style={{background:darkTheme?"#001122":"#d0e4ff"}}>
+                  <th style={{padding:8,border:"1px solid #888"}}>ID</th>
+                  <th style={{padding:8,border:"1px solid #888"}}>Number 1</th>
+                  <th style={{padding:8,border:"1px solid #888"}}>Operation</th>
+                  <th style={{padding:8,border:"1px solid #888"}}>Number 2</th>
+                  <th style={{padding:8,border:"1px solid #888"}}>Result</th>
+                  <th style={{padding:8,border:"1px solid #888"}}>Edit</th>
+                  <th style={{padding:8,border:"1px solid #888"}}>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                {history.map(r => (
+                  <tr key={r.id} style={{textAlign:"center",background:darkTheme?"#001833":"#f0f8ff"}}>
+                    <td style={{padding:6,border:"1px solid #888"}}>{r.id}</td>
+                    <td style={{padding:6,border:"1px solid #888"}}>{r.number1}</td>
+                    <td style={{padding:6,border:"1px solid #888"}}>{revOp[r.operation]}</td>
+                    <td style={{padding:6,border:"1px solid #888"}}>{r.number2}</td>
+                    <td style={{padding:6,border:"1px solid #888"}}>{r.result}</td>
+                    <td style={{padding:6,border:"1px solid #888"}}>
+                      <button 
+                        style={updateButtonStyle} 
+                        onClick={()=>{setEditData({id:r.id, number1:r.number1, number2:r.number2, operation:revOp[r.operation]}); setEditModal(true);} }
+                      >♻️</button>
+                    </td>
+                    <td style={{padding:6,border:"1px solid #888"}}>
+                      <button style={deleteButtonStyle} onClick={()=>deleteOne(r.id)}>❌</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
         </div>
       )}
       {editModal && (
@@ -224,13 +277,12 @@ const RealisticCalculator = () => {
             </select>
             {successMsg && <p style={{marginBottom:5,color:"#0f0"}}>{successMsg}</p>}
             <div style={{display:"flex",gap:6,justifyContent:"flex-end"}}>
-              <button style={getButtonStyle("=")} onClick={updateOne}>= Update</button>
-              <button style={getButtonStyle("AC")} onClick={()=>setEditModal(false)}>❌ Cancel</button>
+              <button style={updateButtonStyle} onClick={updateOne}>♻️</button>
+              <button style={deleteButtonStyle} onClick={()=>setEditModal(false)}>❌</button>
             </div>
           </div>
         </div>
       )}
-
     </div>
   );
 };
