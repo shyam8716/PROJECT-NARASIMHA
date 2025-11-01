@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react"; 
 import api from "../api/axios";
-
 const API_BASE = "http://127.0.0.1:8000/calculators/";
-
 const ambient = {
   darkBg: "linear-gradient(180deg, #050814, #0B0E26)",
   lightBg: "linear-gradient(180deg, #f0f6ff, #dce7ff)",
@@ -13,12 +11,10 @@ const ambient = {
   neonText: "#00f6ff",
   lightText: "#002244",
 };
-
 const numbers = ["7","8","9","4","5","6","1","2","3","0",".","⌫"];
 const ops = ["+","-","*","/","//","%"];
 const mapOp = { "+":"ADD","-":"SUB","*":"MUL","/":"DIV","//":"FLOOR","%":"MOD" };
 const revOp = { ADD:"+", SUB:"-", MUL:"*", DIV:"/", FLOOR:"//", MOD:"%" };
-
 const numberColors = {
   "0": { light: "#00ffff", dark: "#00cccc", glowLight: "0 0 10px #00ffff", glowDark: "0 0 15px #00cccc" },
   "1": { light: "#ff00ff", dark: "#cc00cc", glowLight: "0 0 10px #ff00ff", glowDark: "0 0 15px #cc00cc" },
@@ -33,7 +29,6 @@ const numberColors = {
   ".": { light: "#00ffff", dark: "#00cccc", glowLight: "0 0 10px #00ffff", glowDark: "0 0 15px #00cccc" },
   "⌫": { light: "#ff3333", dark: "#cc0000", glowLight: "0 0 10px #ff3333", glowDark: "0 0 15px #cc0000" }
 };
-
 const opColors = {
   "+": { light: "#00ffff", dark: "#00cccc", glowLight: "0 0 10px #00ffff", glowDark: "0 0 15px #00cccc" },
   "-": { light: "#ff9900", dark: "#cc7a00", glowLight: "0 0 12px #ff9900", glowDark: "0 0 18px #cc7a00" },
@@ -42,12 +37,10 @@ const opColors = {
   "//": { light: "#ff6600", dark: "#cc5200", glowLight: "0 0 10px #ff6600", glowDark: "0 0 15px #cc5200" },
   "%": { light: "#ff0066", dark: "#cc0052", glowLight: "0 0 10px #ff0066", glowDark: "0 0 15px #cc0052" }
 };
-
 const specialColors = {
   "=": { light: "#00ff00", dark: "#00cc00", glowLight: "0 0 12px #00ff00, 0 0 20px #00cc00", glowDark: "0 0 15px #00cc00, 0 0 25px #009900" },
   "AC": { light: "#ff0000", dark: "#cc0000", glowLight: "0 0 12px #ff3333, 0 0 20px #cc0000", glowDark: "0 0 15px #cc0000, 0 0 25px #990000" }
 };
-
 const RealisticCalculator = () => {
   const [num1, setNum1] = useState("0");
   const [num2, setNum2] = useState("");
@@ -66,8 +59,11 @@ const RealisticCalculator = () => {
     setLoading(true);
     try {
       const res = await api.get(`${API_BASE}Reading_calculator_data/`);
+      console.log("History Data:", res.data); // <-- Logs history in console
       setHistory(res.data);
-    } catch(e) { console.log(e); }
+    } catch(e) { 
+      console.log(e); 
+    }
     setLoading(false);
   };
   useEffect(()=>{ loadHistory(); }, []);
@@ -178,7 +174,6 @@ const RealisticCalculator = () => {
     animation: "glow 1.5s infinite alternate",
     transition: "0.2s"
   };
-
   return (
     <div style={{minHeight:"100vh",display:"flex",flexDirection:"column",alignItems:"center",padding:"18px",background:darkTheme?ambient.darkBg:ambient.lightBg,color:darkTheme?ambient.neonText:ambient.lightText}}>
       <style>{`
